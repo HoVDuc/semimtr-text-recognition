@@ -13,22 +13,23 @@ dataset:
         'data/training/label/real',
         'data/training/unlabel',
     ],
-    batch_size: 232,
+    batch_size: 64,
     weights: [ 0.3, 0.7 ]
   }
   valid: {
     roots: [
         'data/validation',
     ],
-    batch_size: 232
+    batch_size: 64
   }
   test: {
     roots: [
         'data/evaluation/benchmark',
         'data/evaluation/addition',
     ],
-    batch_size: 232
+    batch_size: 64
   }
+  charset_path: data/charset_vn.txt
   data_aug: True
   multiscales: False
   num_workers: 14

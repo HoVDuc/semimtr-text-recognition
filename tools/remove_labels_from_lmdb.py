@@ -42,7 +42,7 @@ def write_cache(env, cache):
 
 if __name__ == '__main__':
     labeled_data_root = "data/training/label/real"
-    unlabeled_data_root = "data/training/label_without_labels/real"
+    unlabeled_data_root = "data/training/unlabel"
     datasets = [
         "10.MLT19",
         "11.ReCTS",
