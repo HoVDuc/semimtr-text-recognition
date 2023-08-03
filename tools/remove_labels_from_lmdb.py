@@ -24,7 +24,7 @@ def remove_labels_from_lmdb_dataset(input_lmdb_path, output_lmdb_path):
             cache[image_key_code] = image_key
 
             label_key_code = 'label-%09d'.encode() % cnt
-            cache[label_key_code] = 'unlabeleddata'.encode()
+            cache[label_key_code] = '[unlabeleddata]'.encode()
 
             if cnt % 1000 == 0:
                 write_cache(env_output, cache)
@@ -41,7 +41,7 @@ def write_cache(env, cache):
 
 
 if __name__ == '__main__':
-    labeled_data_root = "data/validation"
+    labeled_data_root = "data/test"
     unlabeled_data_root = "data/training/unlabel"
     datasets = [
         "12.VietOCR"

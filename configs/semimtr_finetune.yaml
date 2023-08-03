@@ -11,23 +11,23 @@ dataset:
   train: {
     roots: [
         'data/training/label/real/12.VietOCR',
-        'data/training/unlabel/U3.STVQA',
+        'data/training/unlabel',
     ],
-    batch_size: 16,
+    batch_size: 64,
     weights: [ 0.3, 0.7 ]
   }
   valid: {
     roots: [
         'data/validation/12.VietOCR',
     ],
-    batch_size: 16
+    batch_size: 64
   }
   test: {
     roots: [
         'data/evaluation/benchmark',
         'data/evaluation/addition',
     ],
-    batch_size: 16
+    batch_size: 64
   }
   charset_path: data/charset_vn.txt
   data_aug: True
