@@ -1,4 +1,4 @@
-from semimtr.modules.model_abinet_iter import ABINetIterModel
+from semimtr.modules.model_abinet_iter_vt import ABINetIterModel
 from semimtr.utils.utils import if_none
 
 

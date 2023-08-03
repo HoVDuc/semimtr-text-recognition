@@ -18,6 +18,7 @@ class BCNLanguage(Model):
         dropout = if_none(config.model_language_dropout, _default_tfmer_cfg['dropout'])
         activation = if_none(config.model_language_activation, _default_tfmer_cfg['activation'])
         num_layers = if_none(config.model_language_num_layers, 4)
+        num_classes = 37
         self.d_model = d_model
         self.detach = if_none(config.model_language_detach, True)
         self.use_self_attn = if_none(config.model_language_use_self_attn, False)
@@ -25,14 +26,14 @@ class BCNLanguage(Model):
         self.max_length = config.dataset_max_length + 1  # additional stop token
         self.debug = if_none(config.global_debug, False)
 
-        self.proj = nn.Linear(self.charset.num_classes, d_model, False)
+        self.proj = nn.Linear(num_classes, d_model, False)
         self.token_encoder = PositionalEncoding(d_model, max_len=self.max_length)
         self.pos_encoder = PositionalEncoding(d_model, dropout=0, max_len=self.max_length)
         decoder_layer = TransformerDecoderLayer(d_model, nhead, d_inner, dropout,
                                                 activation, self_attn=self.use_self_attn, debug=self.debug)
         self.model = TransformerDecoder(decoder_layer, num_layers)
 
-        self.cls = nn.Linear(d_model, self.charset.num_classes)
+        self.cls = nn.Linear(d_model, num_classes)
 
         if config.model_language_checkpoint is not None:
             logging.info(f'Read language model from {config.model_language_checkpoint}.')

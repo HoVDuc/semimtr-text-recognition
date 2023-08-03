@@ -44,7 +44,13 @@ def createDataset(inputPath, gtFile, outputPath, checkValid=True):
 
     nSamples = len(datalist)
     for i in range(nSamples):
-        imagePath, label = datalist[i].strip('\n').split('\t')
+        try:
+            imagePath, label = datalist[i].strip('\n').split('\t')
+        except ValueError as e:
+            print(datalist[i])
+            continue
+            
+        imagePathSave = imagePath
         imagePath = os.path.join(inputPath, imagePath)
 
         # # only use alphanumeric data
@@ -69,8 +75,10 @@ def createDataset(inputPath, gtFile, outputPath, checkValid=True):
 
         imageKey = 'image-%09d'.encode() % cnt
         labelKey = 'label-%09d'.encode() % cnt
+        pathKey = 'imagepath-%09d'.encode() % cnt
         cache[imageKey] = imageBin
         cache[labelKey] = label.encode()
+        cache[pathKey] = imagePathSave.encode()
 
         if cnt % 1000 == 0:
             writeCache(env, cache)

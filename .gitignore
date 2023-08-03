@@ -1,1 +1,10 @@
+.vscode/
 test.ipynb
+data_ocr_500k
+evaluation/
+training/
+validation/
+__pycache__/
+workdir/
+WikiText-103_eval_d1.csv
+WikiText-103.csv

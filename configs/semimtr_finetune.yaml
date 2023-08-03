@@ -10,24 +10,24 @@ dataset:
   type: ST
   train: {
     roots: [
-        'data/training/label/real',
-        'data/training/unlabel',
+        'data/training/label/real/12.VietOCR',
+        'data/training/unlabel/U3.STVQA',
     ],
-    batch_size: 64,
+    batch_size: 16,
     weights: [ 0.3, 0.7 ]
   }
   valid: {
     roots: [
-        'data/validation',
+        'data/validation/12.VietOCR',
     ],
-    batch_size: 64
+    batch_size: 16
   }
   test: {
     roots: [
         'data/evaluation/benchmark',
         'data/evaluation/addition',
     ],
-    batch_size: 64
+    batch_size: 16
   }
   charset_path: data/charset_vn.txt
   data_aug: True
@@ -39,7 +39,7 @@ training:
   epochs: 5
   show_iters: 50
   eval_iters: 1000
-  save_iters: 3000
+  save_iters: 1000
 
 optimizer:
   type: Adam
