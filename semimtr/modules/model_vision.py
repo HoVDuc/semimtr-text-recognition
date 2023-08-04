@@ -13,7 +13,7 @@ class BaseVision(Model):
         super().__init__(config)
         self.loss_weight = if_none(config.model_vision_loss_weight, 1.0)
         self.out_channels = if_none(config.model_vision_d_model, 512)
-        num_classes = 37 # Fix with pretrained 
+        num_classes = self.charset.num_classes # Fix with pretrained 
         if config.model_vision_backbone == 'transformer':
             self.backbone = ResTranformer(config)
         else:

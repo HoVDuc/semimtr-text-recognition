@@ -18,7 +18,7 @@ class BCNLanguage(Model):
         dropout = if_none(config.model_language_dropout, _default_tfmer_cfg['dropout'])
         activation = if_none(config.model_language_activation, _default_tfmer_cfg['activation'])
         num_layers = if_none(config.model_language_num_layers, 4)
-        num_classes = 37
+        num_classes = self.charset.num_classes
         self.d_model = d_model
         self.detach = if_none(config.model_language_detach, True)
         self.use_self_attn = if_none(config.model_language_use_self_attn, False)
