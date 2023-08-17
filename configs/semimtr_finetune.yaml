@@ -34,6 +34,8 @@ dataset:
   multiscales: False
   num_workers: 14
   augmentation_severity: 1
+  case_sensitive: True
+  eval_case_sensitive: True
 
 training:
   epochs: 5
