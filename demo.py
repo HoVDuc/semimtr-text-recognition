@@ -87,14 +87,14 @@ def load(model, file, device=None, strict=True):
     return model
 
 
-def main():
+def main(args):
     parser = argparse.ArgumentParser()
-    parser.add_argument('--config', type=str, default='configs/semimtr_finetune.yaml',
+    parser.add_argument('--config', type=str, default=args['config'],
                         help='path to config file')
-    parser.add_argument('--input', type=str, default='figs/test')
-    parser.add_argument('--cuda', type=int, default=-1)
+    parser.add_argument('--input', type=str, default=args['input'])
+    parser.add_argument('--cuda', type=int, default=args['device'])
     parser.add_argument('--checkpoint', type=str,
-                        default='workdir/consistency-regularization/best-consistency-regularization.pth')
+                        default=args['checkpoint'])
     parser.add_argument('--model_eval', type=str, default='alignment',
                         choices=['alignment', 'vision', 'language'])
     args = parser.parse_args()
@@ -129,7 +129,7 @@ def main():
         res = model(img, forward_only_teacher=True)
         pt_text, _, __ = postprocess(res, charset, config.model_eval)
         pt_outputs[path] = pt_text[0]
-        logging.info(f'SemiMTR Prediction of the path: {path} is: {pt_text[0]}')
+        # logging.info(f'SemiMTR Prediction of the path: {path} is: {pt_text[0]}')
     return pt_outputs
 
 
