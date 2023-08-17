@@ -41,10 +41,10 @@ def write_cache(env, cache):
 
 
 if __name__ == '__main__':
-    labeled_data_root = "data/test"
+    labeled_data_root = "data/validation"
     unlabeled_data_root = "data/training/unlabel"
     datasets = [
-        "12.VietOCR"
+        "Handwrite"
     ]
 
     n_jobs = min(cpu_count(), len(datasets))

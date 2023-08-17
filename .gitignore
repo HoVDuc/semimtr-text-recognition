@@ -6,5 +6,8 @@ training/
 validation/
 __pycache__/
 workdir/
+a/
 WikiText-103_eval_d1.csv
 WikiText-103.csv
+infer.ipynb
+prediction.txt
