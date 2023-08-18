@@ -2,9 +2,9 @@ from demo import *
 
 args = {
     'config': 'configs/semimtr_finetune.yaml',
-    'input': '../Datasets/Handwritten_OCR/test/',
-    'checkpoint': 'workdir/consistency-regularization/best-consistency-regularization.pth',
-    'device': 0
+    'input': '../new_public_test/',
+    'checkpoint': 'workdir/consistency-regularization/consistency-regularization_4_25000.pth',
+    'device': -1
 }
 
 pt_outputs = main(args)

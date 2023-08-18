@@ -10,7 +10,7 @@ dataset:
   type: ST
   train: {
     roots: [
-        'data/training/label/real/12.VietOCR',
+        'data/training/label',
         'data/training/unlabel',
     ],
     batch_size: 64,
@@ -18,14 +18,13 @@ dataset:
   }
   valid: {
     roots: [
-        'data/validation/12.VietOCR',
+        'data/validation',
     ],
     batch_size: 64
   }
   test: {
     roots: [
-        'data/evaluation/benchmark',
-        'data/evaluation/addition',
+        'data/validation',
     ],
     batch_size: 64
   }

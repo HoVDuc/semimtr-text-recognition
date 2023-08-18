@@ -8,15 +8,15 @@ global:
 dataset:
   train: {
     roots: [
-        'data/WikiText-103.csv',
+        'data/HandwriteText.csv',
     ],
-    batch_size: 4096
+    batch_size: 2048
   }
   valid: {
     roots: [
-        'data/WikiText-103_eval_d1.csv',
+        'data/HandwriteText_eval.csv',
     ],
-    batch_size: 4096
+    batch_size: 2048
   }
 
 training:
