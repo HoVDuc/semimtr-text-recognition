@@ -13,22 +13,22 @@ dataset:
         'data/training/label',
         'data/training/unlabel',
     ],
-    batch_size: 64,
+    batch_size: 12,
     weights: [ 0.3, 0.7 ]
   }
   valid: {
     roots: [
         'data/validation',
     ],
-    batch_size: 64
+    batch_size: 12
   }
   test: {
     roots: [
         'data/validation',
     ],
-    batch_size: 64
+    batch_size: 12
   }
-  charset_path: data/charset_vn.txt
+  charset_path: data/charset_vn_new.txt
   data_aug: True
   multiscales: False
   num_workers: 14
@@ -66,7 +66,7 @@ model:
     checkpoint_submodule: vision,
   }
   language: {
-    checkpoint: workdir/abinet_language_model.pth,
+    checkpoint: workdir/best-pretrain-language-model.pth,
     num_layers: 4,
     loss_weight: 1.,
     detach: True,

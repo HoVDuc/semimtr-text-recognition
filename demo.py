@@ -2,7 +2,6 @@ import argparse
 import glob
 import logging
 import os
-
 import PIL
 import cv2
 import numpy as np
@@ -87,17 +86,23 @@ def load(model, file, device=None, strict=True):
     return model
 
 
-def main(args):
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--config', type=str, default=args['config'],
-                        help='path to config file')
-    parser.add_argument('--input', type=str, default=args['input'])
-    parser.add_argument('--cuda', type=int, default=args['device'])
-    parser.add_argument('--checkpoint', type=str,
-                        default=args['checkpoint'])
-    parser.add_argument('--model_eval', type=str, default='alignment',
-                        choices=['alignment', 'vision', 'language'])
-    args = parser.parse_args()
+def main(configs, use_cmd=True):
+    if use_cmd:
+        parser = argparse.ArgumentParser()
+        parser.add_argument('--config', type=str, default=configs['config'],
+                            help='path to config file')
+        parser.add_argument('--input', type=str, default=configs['input'])
+        parser.add_argument('--cuda', type=int, default=configs['cuda'])
+        parser.add_argument('--checkpoint', type=str,
+                            default=configs['checkpoint'])
+        parser.add_argument('--model_eval', type=str, default='alignment',
+                            choices=['alignment', 'vision', 'language'])
+        args = parser.parse_args()
+    else:
+        args = argparse.Namespace()
+        for key, value in configs.items():
+            vars(args)[key] = value
+
     config = Config(args.config)
     if args.checkpoint is not None: config.model_checkpoint = args.checkpoint
     if args.model_eval is not None: config.model_eval = args.model_eval

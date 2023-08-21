@@ -11,7 +11,7 @@ from semimtr.utils.utils import if_none
 class IterationCallback(LearnerTensorboardWriter):
     "A `TrackerCallback` that monitor in each iteration."
 
-    def __init__(self, learn: Learner, name: str = 'model', checpoint_keep_num=5,
+    def __init__(self, learn: Learner, name: str = 'model', checpoint_keep_num=90,
                  show_iters: int = 50, eval_iters: int = 1000, save_iters: int = 20000,
                  start_iters: int = 0, stats_iters=20000, hist_iters=20000, debug=False):
         super().__init__(learn, base_dir='.', name=learn.path, loss_iters=show_iters,
