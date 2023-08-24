@@ -13,22 +13,22 @@ dataset:
         'data/training/label',
         'data/training/unlabel',
     ],
-    batch_size: 12,
+    batch_size: 64,
     weights: [ 0.3, 0.7 ]
   }
   valid: {
     roots: [
         'data/validation',
     ],
-    batch_size: 12
+    batch_size: 64
   }
   test: {
     roots: [
-        'data/validation',
+        'data/evaluation',
     ],
-    batch_size: 12
+    batch_size: 64
   }
-  charset_path: data/charset_vn_new.txt
+  charset_path: backup/charset_vn.txt
   data_aug: True
   multiscales: False
   num_workers: 14
@@ -38,7 +38,7 @@ dataset:
 
 training:
   epochs: 5
-  show_iters: 50
+  show_iters: 100
   eval_iters: 1000
   save_iters: 1000
 
@@ -56,7 +56,7 @@ optimizer:
 
 model:
   name: 'semimtr.modules.model_fusion_consistency_regularization.ConsistencyRegularizationFusionModel'
-  iter_size: 3
+  iter_size: 5
   vision: {
     checkpoint: workdir/semimtr_vision_model_real_l_and_u.pth,
     loss_weight: 1.,
