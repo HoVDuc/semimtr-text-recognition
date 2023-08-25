@@ -28,7 +28,7 @@ dataset:
     ],
     batch_size: 64
   }
-  charset_path: backup/charset_vn.txt
+  charset_path: data/charset_vn.txt
   data_aug: True
   multiscales: False
   num_workers: 14
@@ -50,13 +50,13 @@ optimizer:
   clip_grad: 20
   lr: 0.0001
   scheduler: {
-    periods: [ 3, 1, 1 ],
+    periods: [ 3, 1, 1 ], 
     gamma: 0.1,
   }
 
 model:
   name: 'semimtr.modules.model_fusion_consistency_regularization.ConsistencyRegularizationFusionModel'
-  iter_size: 5
+  iter_size: 3
   vision: {
     checkpoint: workdir/semimtr_vision_model_real_l_and_u.pth,
     loss_weight: 1.,
@@ -66,7 +66,7 @@ model:
     checkpoint_submodule: vision,
   }
   language: {
-    checkpoint: workdir/best-pretrain-language-model.pth,
+    checkpoint: workdir/abinet_language_model.pth,
     num_layers: 4,
     loss_weight: 1.,
     detach: True,
