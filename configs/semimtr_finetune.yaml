@@ -30,7 +30,7 @@ dataset:
   }
   charset_path: data/charset_vn.txt
   data_aug: True
-  multiscales: False
+  multiscales: True #tỷ lệ khác nhau
   num_workers: 14
   augmentation_severity: 1
   case_sensitive: True

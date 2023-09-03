@@ -38,10 +38,10 @@ def _get_training_phases(config, n):
 
 def _get_dataset(ds_type, paths, is_training, config, **kwargs):
     kwargs.update({
-        'img_h': config.dataset_image_height,
-        'img_w': config.dataset_image_width,
-        'max_length': config.dataset_max_length,
-        'case_sensitive': config.dataset_case_sensitive,
+        'img_h': config.dataset_image_height, #32
+        'img_w': config.dataset_image_width, #128
+        'max_length': config.dataset_max_length, #25
+        'case_sensitive': config.dataset_case_sensitive, 
         'charset_path': config.dataset_charset_path,
         'data_aug': config.dataset_data_aug,
         'deteriorate_ratio': config.dataset_deteriorate_ratio,
