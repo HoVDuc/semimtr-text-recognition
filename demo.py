@@ -97,6 +97,7 @@ def main(configs, use_cmd=True):
                             default=configs['checkpoint'])
         parser.add_argument('--model_eval', type=str, default='alignment',
                             choices=['alignment', 'vision', 'language'])
+        parser.add_argument('--mode', action='store_true')
         args = parser.parse_args()
     else:
         args = argparse.Namespace()

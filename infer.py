@@ -1,19 +1,32 @@
 from demo import *
+import parser
 
-args = {
-    'config': 'configs/semimtr_finetune.yaml',
-    'input': '../Datasets/Handwritten_OCR/new_public_test/',
-    'checkpoint': './best-consistency-regularization.pth',
-    'model_eval': 'alignment',
-    'cuda': 0
-}
+def infer(args):
+    mode = args.mode
+    args_ = {
+        'config': 'configs/semimtr_finetune.yaml',
+        'input': args.input,
+        # 'checkpoint': ['../../consistency-regularization_1_36000.pth', './workdir/best-consistency-regularization-0.448.pth'],
+        'checkpoint': './workdir/consistency-regularization/consistency-regularization_4_23000.pth',
+        'model_eval': 'alignment',
+        'cuda': 0
+    }
+    pt_outputs = main(args_)
+    logging.info('Finished!')
+    if mode:
+        with open('prediction.txt', 'w+') as f:
+            for k, v in pt_outputs.items():
+                f.write('{}\t{}\n'.format(os.path.basename(k), v))
+    else:           
+        for k, v in pt_outputs.items():
+            print(k, v)
 
-pt_outputs = main(args)
-logging.info('Finished!')
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-i', '--input', type=str, required=True,
+                        help='path to image')
+    parser.add_argument('--mode', action='store_true', required=False,
+                        help='path to image')
+    args = parser.parse_args()
 
-with open('prediction.txt', 'a+') as f:
-    for k, v in pt_outputs.items():
-        f.write('{}\t{}\n'.format(os.path.basename(k), v))
-        
-# for k, v in pt_outputs.items():
-#     print(k, v)
+    infer(args)
