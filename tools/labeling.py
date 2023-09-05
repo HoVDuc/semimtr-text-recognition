@@ -14,7 +14,7 @@ class GUI:
         self.root = tk.Tk()
         self.root.title("Labeling")
         self.list_canvas = []
-        self.root.geometry('600x450')
+        self.root.geometry('600x470')
         self.create_canvas()
         self.create_button()
         self.binding()
@@ -27,7 +27,7 @@ class GUI:
         self.entry_gt.delete(0, 'end')
         self.entry_idx.delete(0, 'end')
         self.idx += i
-        self.create_()
+        self.update()
     
     def create_entry(self):
         self.entry_data_path = ttk.Entry(self.canvas_data)
@@ -87,7 +87,7 @@ class GUI:
     def open_file(self, entry):
         f = filedialog.askopenfilename()
         try:
-            entry.delete('1.0', 'end')
+            entry.delete(0, 'end')
         except:
             pass
         entry.insert(INSERT, f)
@@ -114,13 +114,21 @@ class GUI:
 
         
     def save(self):
-        with open(self.name_file, 'a+', encoding='utf-8') as f:
-            f.write('{}\t{}\n'.format(self.data['image_path'].iloc[self.idx], self.entry_gt.get()))
+        image_path = self.data['image_path'].iloc[self.idx]
         with open(self.name_file, 'r', encoding='utf-8') as f:
-            self.text.delete('1.0', 'end')
-            self.text.insert(INSERT, f.read())
+            lines = f.readlines()
+        lines = [line.split('\t') for line in lines]
+        df = pd.DataFrame(lines, columns=['image_path', 'gt'])
+        if df['image_path'].isin([image_path]).any():
+            tk.messagebox.showerror(title='Lỗi!', message='Đường dẫn đã tồn tại')
+        else:
+            with open(self.name_file, 'a+', encoding='utf-8') as f:
+                f.write('{}\t{}\n'.format(self.data['image_path'].iloc[self.idx], self.entry_gt.get()))
+            with open(self.name_file, 'r', encoding='utf-8') as f:
+                self.text.delete('1.0', 'end')
+                self.text.insert(INSERT, f.read())
 
-    def create_(self):
+    def update(self):
         resultsContents = StringVar()
         try:
             self.list_canvas.pop().destroy()
@@ -145,7 +153,5 @@ class GUI:
         
 if __name__ == "__main__":
     root = '../Datasets/new_train/'
-    # read file gt with pandas
-    
     gui = GUI(root)
     gui.run()
