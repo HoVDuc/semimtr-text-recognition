@@ -3,7 +3,7 @@ global:
   phase: train
   stage: train-semi-supervised
   workdir: workdir
-  seed: ~
+  seed: 2023
 
 dataset:
   scheme: consistency_regularization

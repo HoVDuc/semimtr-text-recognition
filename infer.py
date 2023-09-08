@@ -7,7 +7,7 @@ def infer(args):
         'config': 'configs/semimtr_finetune.yaml',
         'input': args.input,
         # 'checkpoint': ['../../consistency-regularization_1_36000.pth', './workdir/best-consistency-regularization-0.448.pth'],
-        'checkpoint': './workdir/consistency-regularization/consistency-regularization_4_23000.pth',
+        'checkpoint': './workdir/consistency-regularization1/consistency-regularization_4_12000.pth',
         'model_eval': 'alignment',
         'cuda': 0
     }
