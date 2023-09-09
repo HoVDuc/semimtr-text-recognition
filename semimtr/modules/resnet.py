@@ -1,6 +1,6 @@
 import math
 import torch.nn as nn
-from stn import Net
+# from stn import Net
 
 def conv1x1(in_planes, out_planes, stride=1):
     return nn.Conv2d(in_planes, out_planes, kernel_size=1, stride=stride, bias=False)
@@ -59,7 +59,7 @@ class ResNet(nn.Module):
         self.layer3 = self._make_layer(block, 128, layers[2], stride=2)
         self.layer4 = self._make_layer(block, 256, layers[3], stride=1)
         self.layer5 = self._make_layer(block, 512, layers[4], stride=1)
-        self.stn = Net()
+        # self.stn = Net()
 
         for m in self.modules():
             if isinstance(m, nn.Conv2d):
@@ -87,7 +87,7 @@ class ResNet(nn.Module):
         return nn.Sequential(*layers)
 
     def forward(self, x):
-        x = self.stn(x)
+        # x = self.stn(x)
         x = self.conv1(x)
         x = self.bn1(x)
         x = self.relu(x)
