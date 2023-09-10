@@ -1,7 +1,3 @@
-import cv2
-import random
-import numpy as np
-from PIL import Image
 from imgaug import augmenters as iaa
 from semimtr.dataset.my_imgaug import RotateAffine
 
@@ -17,18 +13,18 @@ def get_augmentation_pipeline(augmentation_severity=1):
     """
     if augmentation_severity == 1:
         augmentations = iaa.Sequential([
-            # iaa.Invert(0.5), # Đảo ngược màu sắc 
+            iaa.Invert(0.5), # Đảo ngược màu sắc 
             RotateAffine((-20, 20), p=0.4)(),
             iaa.OneOf([
-                # iaa.ChannelShuffle(0.35), # Hoán đổi các kênh màu
+                iaa.ChannelShuffle(0.35), # Hoán đổi các kênh màu
                 iaa.Grayscale(alpha=(0.0, 1.0)), # Chuyển đổi hình ảnh xám
                 iaa.KMeansColorQuantization(), # Áp dụng phân đoạn màu sắc
                 iaa.HistogramEqualization(), # Cân bằng histogram
                 iaa.Dropout(p=(0, 0.2), per_channel=0.5), # Loại bỏ một phần của hình ảnh 
                 iaa.GammaContrast((0.5, 2.0)), # Tăng cường độ tương phản
                 iaa.MultiplyBrightness((0.5, 1.5)), # Tăng hoặc giảm độ sáng
-                # iaa.AddToHueAndSaturation((-50, 50), per_channel=True), # Thay đổi màu sắc và độ bão hòa
-                # iaa.ChangeColorTemperature((1100, 10000)) # Thay đổi nhiệt độ màu 
+                iaa.AddToHueAndSaturation((-50, 50), per_channel=True), # Thay đổi màu sắc và độ bão hòa
+                iaa.ChangeColorTemperature((1100, 10000)) # Thay đổi nhiệt độ màu 
             ]),
             iaa.OneOf([
                 iaa.Sharpen(alpha=(0.0, 0.5), lightness=(0.0, 0.5)), # Làm sắc nét hình ảnh
