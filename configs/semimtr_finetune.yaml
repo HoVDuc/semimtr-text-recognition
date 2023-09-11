@@ -37,7 +37,7 @@ dataset:
   eval_case_sensitive: True
 
 training:
-  epochs: 5
+  epochs: 6
   show_iters: 100
   eval_iters: 1000
   save_iters: 1000
@@ -50,7 +50,7 @@ optimizer:
   clip_grad: 20
   lr: 0.0001
   scheduler: {
-    periods: [ 3, 1, 1 ], 
+    periods: [ 3, 1, 2 ], 
     gamma: 0.1,
   }
 
