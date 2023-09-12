@@ -14,7 +14,7 @@ def get_augmentation_pipeline(augmentation_severity=1):
     if augmentation_severity == 1:
         augmentations = iaa.Sequential([
             iaa.Invert(0.5), # Đảo ngược màu sắc 
-            RotateAffine((-20, 20), p=0.4)(),
+            # RotateAffine((-20, 20), p=0.4)(),
             iaa.OneOf([
                 iaa.ChannelShuffle(0.35), # Hoán đổi các kênh màu
                 iaa.Grayscale(alpha=(0.0, 1.0)), # Chuyển đổi hình ảnh xám
